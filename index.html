@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Martin Mikš – Ajťák v Brně a okolí</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --blue: #2D72C7;
+    --blue-dark: #1B548F;
+    --blue-soft: #EAF3FC;
+    --green: #2E9E6B;
+    --green-soft: #E7F6EF;
+    --amber: #F2A93B;
+    --cream: #FBF9F4;
+    --white: #ffffff;
+    --text: #20262E;
+    --text-muted: #586273;
+    --border: #E6E3DB;
+    --shadow: 0 10px 30px -14px rgba(27,84,143,0.22);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    background: var(--cream);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* NAV */
+  nav {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 2rem; position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.95); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-size: 1.25rem; font-weight: 800; color: var(--blue-dark); letter-spacing: -0.4px; }
+  .nav-logo span { color: var(--green); }
+  nav ul { list-style: none; display: flex; gap: 1.8rem; align-items: center; }
+  nav ul li a { text-decoration: none; color: var(--text-muted); font-size: 1rem; font-weight: 500; transition: color 0.2s; }
+  nav ul li a:hover { color: var(--blue-dark); }
+  .nav-phone { background: var(--green); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 100px; font-weight: 600; }
+  .nav-phone:hover { background: #258257; }
+
+  /* HERO */
+  .hero {
+    position: relative;
+    background: linear-gradient(165deg, var(--blue-soft) 0%, #F4FAFF 55%, var(--green-soft) 130%);
+    padding: 4.5rem 2rem 4rem;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner { max-width: 760px; margin: 0 auto; }
+  .hero-badge {
+    display: inline-block; background: var(--white); color: var(--blue-dark);
+    font-size: 0.95rem; font-weight: 600; padding: 0.45rem 1.1rem;
+    border-radius: 100px; margin-bottom: 1.6rem; box-shadow: var(--shadow);
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 5.5vw, 3.7rem); font-weight: 800;
+    line-height: 1.08; letter-spacing: -1.2px; color: var(--blue-dark);
+    margin-bottom: 1.2rem;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero p { font-size: 1.2rem; color: var(--text-muted); max-width: 580px; margin: 0 auto 2rem; }
+  .hero-actions { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green); color: #fff; border: none;
+    padding: 0.95rem 2rem; border-radius: 100px;
+    font-family: inherit; font-size: 1.1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 0.5rem;
+    box-shadow: 0 8px 22px -8px rgba(46,158,107,0.55); transition: transform 0.18s, background 0.18s;
+  }
+  .btn-primary:hover { background: #258257; transform: translateY(-2px); }
+  .btn-secondary {
+    background: var(--white); color: var(--blue-dark); border: 2px solid var(--border);
+    padding: 0.95rem 1.8rem; border-radius: 100px;
+    font-family: inherit; font-size: 1.1rem; font-weight: 600;
+    cursor: pointer; text-decoration: none; transition: border-color 0.18s, transform 0.18s;
+    display: inline-flex; align-items: center; gap: 0.5rem;
+  }
+  .btn-secondary:hover { border-color: var(--blue); transform: translateY(-2px); }
+
+  .trust-strip { display: flex; gap: 2.5rem; justify-content: center; flex-wrap: wrap; margin-top: 2.6rem; }
+  .trust-item { display: flex; align-items: center; gap: 0.55rem; color: var(--text-muted); font-size: 1.02rem; font-weight: 500; }
+  .trust-item .ic { color: var(--green); font-size: 1.3rem; }
+
+  /* SECTION */
+  .section { max-width: 1000px; margin: 0 auto; padding: 4.5rem 2rem; }
+  .section-label { font-size: 0.95rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 0.5rem; }
+  h2 { font-size: clamp(1.8rem, 3.6vw, 2.4rem); font-weight: 800; color: var(--blue-dark); letter-spacing: -0.7px; line-height: 1.15; margin-bottom: 1rem; }
+  .lead { font-size: 1.1rem; color: var(--text-muted); max-width: 600px; }
+
+  /* O MNĚ */
+  .about-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 2.5rem; align-items: center; margin-top: 1.8rem; }
+  .about-text p { color: var(--text-muted); margin-bottom: 1rem; font-size: 1.08rem; }
+  .about-text p strong { color: var(--text); font-weight: 600; }
+  .photo-card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 20px;
+    padding: 2rem; text-align: center; box-shadow: var(--shadow);
+  }
+  .photo-avatar {
+    width: 96px; height: 96px; border-radius: 50%; margin: 0 auto 1rem;
+    background: linear-gradient(140deg, var(--blue), var(--green));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 2.4rem; color: #fff; font-weight: 700;
+  }
+  .photo-card h3 { font-size: 1.25rem; font-weight: 700; color: var(--blue-dark); }
+  .photo-card .role { color: var(--text-muted); margin-bottom: 1.2rem; }
+  .photo-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.7rem; }
+  .photo-stat { background: var(--blue-soft); border-radius: 12px; padding: 0.7rem; }
+  .photo-stat .n { font-size: 1.4rem; font-weight: 800; color: var(--blue-dark); }
+  .photo-stat .l { font-size: 0.82rem; color: var(--text-muted); }
+
+  /* CENÍK */
+  .price-wrap { margin-top: 1.8rem; background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); }
+  .price-head-row { display: grid; grid-template-columns: 1fr 150px 180px; background: var(--blue-dark); color: #fff; padding: 1rem 1.5rem; font-weight: 600; font-size: 0.98rem; }
+  .price-head-row span:not(:first-child) { text-align: right; }
+  .price-head-row .disc-col { color: #BFE8D4; }
+  .price-row { display: grid; grid-template-columns: 1fr 150px 180px; padding: 0.95rem 1.5rem; border-bottom: 1px solid var(--border); align-items: center; transition: background 0.15s; }
+  .price-row:last-child { border-bottom: none; }
+  .price-row:nth-child(even) { background: #FCFBF8; }
+  .price-row:hover { background: var(--blue-soft); }
+  .price-name { font-weight: 500; font-size: 1.05rem; }
+  .price-name small { display: block; color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
+  .price-val { text-align: right; font-weight: 600; font-size: 1.05rem; }
+  .price-val.adult { color: var(--text); }
+  .price-val.disc { color: var(--green); }
+  .price-val .unit { color: var(--text-muted); font-size: 0.85rem; font-weight: 400; }
+  .free-badge { display: inline-block; background: var(--green-soft); color: var(--green); font-size: 0.92rem; font-weight: 700; padding: 0.2rem 0.7rem; border-radius: 8px; }
+  .price-note { margin-top: 1rem; font-size: 0.98rem; color: var(--text-muted); }
+
+  /* DOSTUPNOST */
+  .hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; margin-top: 1.8rem; }
+  .hours-card { border-radius: 18px; padding: 1.8rem; border: 1px solid var(--border); box-shadow: var(--shadow); }
+  .hours-card.main { background: var(--green-soft); border-color: #BFE8D4; }
+  .hours-card.extra { background: var(--blue-soft); border-color: #C5DEF5; }
+  .hours-card h3 { font-size: 1.1rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.5rem; }
+  .hours-card .time { font-size: 1.55rem; font-weight: 800; letter-spacing: -0.5px; }
+  .hours-card.main .time { color: var(--green); }
+  .hours-card.extra .time { color: var(--blue-dark); }
+  .hours-card p { font-size: 1rem; color: var(--text-muted); margin-top: 0.5rem; }
+  .surcharge-badge { display: inline-block; margin-top: 0.9rem; background: var(--amber); color: #5a3d00; font-size: 0.92rem; font-weight: 700; padding: 0.3rem 0.85rem; border-radius: 100px; }
+
+  /* PROČ JÁ */
+  .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.8rem; }
+  .why-card { background: var(--white); border: 1px solid var(--border); border-radius: 18px; padding: 1.6rem; box-shadow: var(--shadow); transition: transform 0.18s; }
+  .why-card:hover { transform: translateY(-4px); }
+  .why-icon { width: 52px; height: 52px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 1rem; background: var(--blue-soft); }
+  .why-card h3 { font-size: 1.15rem; font-weight: 700; color: var(--blue-dark); margin-bottom: 0.4rem; }
+  .why-card p { font-size: 1rem; color: var(--text-muted); }
+
+  /* WEBY */
+  .web-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6rem; margin-top: 1.8rem; }
+  .web-card { background: var(--white); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--shadow); transition: transform 0.18s; }
+  .web-card:hover { transform: translateY(-4px); }
+  .web-preview { position: relative; height: 220px; overflow: hidden; background: var(--blue-soft); border-bottom: 1px solid var(--border); }
+  .web-preview iframe { width: 200%; height: 200%; border: none; transform: scale(0.5); transform-origin: top left; pointer-events: none; }
+  .web-preview-overlay { position: absolute; inset: 0; cursor: pointer; }
+  .web-body { padding: 1.4rem 1.5rem; }
+  .web-tag { font-size: 0.82rem; font-weight: 700; color: var(--green); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.4rem; }
+  .web-body h3 { font-size: 1.2rem; font-weight: 800; color: var(--blue-dark); margin-bottom: 0.3rem; }
+  .web-body p { font-size: 0.97rem; color: var(--text-muted); margin-bottom: 1rem; }
+  .web-link { display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none; background: var(--blue-dark); color: #fff; padding: 0.6rem 1.2rem; border-radius: 100px; font-weight: 600; font-size: 0.95rem; transition: background 0.18s; }
+  .web-link:hover { background: var(--blue); }
+  @media (max-width: 760px) { .web-grid { grid-template-columns: 1fr; } }
+
+  /* KONTAKT */
+  .contact-section { background: var(--blue-dark); color: #fff; padding: 4rem 2rem; text-align: center; }
+  .contact-section .section-label { color: #BFE8D4; }
+  .contact-section h2 { color: #fff; max-width: 480px; margin: 0 auto 1rem; }
+  .contact-section p { color: rgba(255,255,255,0.82); max-width: 440px; margin: 0 auto 2rem; font-size: 1.15rem; }
+  .contact-links { display: flex; gap: 0.9rem; justify-content: center; flex-wrap: wrap; }
+  .btn-white { background: #fff; color: var(--blue-dark); border: none; padding: 0.95rem 2rem; border-radius: 100px; font-family: inherit; font-size: 1.15rem; font-weight: 700; text-decoration: none; transition: transform 0.18s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-white:hover { transform: translateY(-2px); }
+  .btn-outline-white { background: transparent; color: #fff; border: 2px solid rgba(255,255,255,0.45); padding: 0.95rem 1.8rem; border-radius: 100px; font-family: inherit; font-size: 1.1rem; font-weight: 600; text-decoration: none; transition: border-color 0.18s; display: inline-flex; align-items: center; gap: 0.5rem; }
+  .btn-outline-white:hover { border-color: #fff; }
+
+  footer { text-align: center; padding: 2rem; font-size: 0.95rem; color: var(--text-muted); background: var(--cream); border-top: 1px solid var(--border); }
+  footer a { color: var(--blue-dark); text-decoration: none; }
+
+  @media (max-width: 760px) {
+    nav ul li:not(.nav-phone-li) { display: none; }
+    .about-grid, .why-grid, .hours-grid { grid-template-columns: 1fr; }
+    .price-head-row { display: none; }
+    .price-row { grid-template-columns: 1fr; gap: 0.3rem; padding: 1.1rem 1.3rem; }
+    .price-val { text-align: left; }
+    .price-val.adult::before { content: 'Dospělí: '; color: var(--text-muted); font-weight: 500; }
+    .price-val.disc::before { content: 'Senioři a studenti: '; color: var(--text-muted); font-weight: 500; }
+  }
+
+  /* CHATBOT */
+  #chat-btn { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--green); color: #fff; border: none; border-radius: 100px; padding: 0.9rem 1.5rem; font-size: 1.02rem; font-weight: 600; cursor: pointer; z-index: 999; box-shadow: 0 10px 28px -8px rgba(46,158,107,0.6); font-family: inherit; display: flex; align-items: center; gap: 0.5rem; transition: transform 0.18s; }
+  #chat-btn:hover { transform: translateY(-2px); }
+  #chat-window { position: fixed; bottom: 5.3rem; right: 1.5rem; width: 380px; max-width: calc(100vw - 2rem); max-height: 560px; background: #fff; border-radius: 18px; box-shadow: 0 24px 60px -18px rgba(0,0,0,0.3); z-index: 998; display: none; flex-direction: column; overflow: hidden; border: 1px solid var(--border); }
+  #chat-window.open { display: flex; }
+  #chat-header { background: var(--blue-dark); color: #fff; padding: 1.1rem 1.3rem; display: flex; justify-content: space-between; align-items: center; }
+  #chat-header strong { font-size: 1.05rem; }
+  #chat-header span { font-size: 0.85rem; opacity: 0.85; }
+  #chat-close { background: none; border: none; color: #fff; font-size: 1.3rem; cursor: pointer; line-height: 1; }
+  #chat-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .msg { max-width: 85%; padding: 0.65rem 0.95rem; border-radius: 14px; font-size: 0.98rem; line-height: 1.5; }
+  .msg.bot { background: var(--blue-soft); color: var(--text); align-self: flex-start; border-bottom-left-radius: 4px; }
+  .msg.user { background: var(--green); color: #fff; align-self: flex-end; border-bottom-right-radius: 4px; }
+  .msg.system { background: #FFF4DC; color: #8a6300; font-size: 0.9rem; align-self: center; border: 1px solid var(--amber); border-radius: 8px; padding: 0.45rem 0.75rem; }
+  #chat-form { display: flex; gap: 0.5rem; padding: 0.85rem; border-top: 1px solid var(--border); }
+  #chat-input { flex: 1; border: 1px solid var(--border); border-radius: 9px; padding: 0.6rem 0.85rem; font-size: 0.98rem; font-family: inherit; outline: none; }
+  #chat-input:focus { border-color: var(--blue); }
+  #chat-send { background: var(--green); color: #fff; border: none; border-radius: 9px; padding: 0.6rem 1rem; cursor: pointer; font-size: 1rem; font-weight: 600; }
+  #chat-footer { padding: 0.65rem 1rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+  #download-btn { background: var(--green-soft); color: var(--green); border: none; border-radius: 7px; padding: 0.35rem 0.85rem; font-size: 0.85rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+  #chat-footer small { font-size: 0.78rem; color: var(--text-muted); }
+  .typing { display: flex; gap: 4px; padding: 0.65rem 0.95rem; background: var(--blue-soft); border-radius: 14px; align-self: flex-start; }
+  .typing span { width: 7px; height: 7px; background: var(--blue); border-radius: 50%; animation: bounce 1s infinite; }
+  .typing span:nth-child(2) { animation-delay: 0.15s; } .typing span:nth-child(3) { animation-delay: 0.3s; }
+  @keyframes bounce { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-6px); } }
+  #intake-form { padding: 1.1rem; display: flex; flex-direction: column; gap: 0.6rem; overflow-y: auto; }
+  #intake-form label { font-size: 0.92rem; font-weight: 600; color: var(--text-muted); }
+  #intake-form select, #intake-form textarea { width: 100%; border: 1px solid var(--border); border-radius: 9px; padding: 0.55rem 0.8rem; font-size: 0.98rem; font-family: inherit; outline: none; }
+  #intake-form select:focus, #intake-form textarea:focus { border-color: var(--blue); }
+  #intake-form textarea { resize: none; height: 70px; }
+  #intake-submit { background: var(--green); color: #fff; border: none; border-radius: 9px; padding: 0.7rem; font-size: 1rem; font-weight: 600; cursor: pointer; font-family: inherit; }
+
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Martin Mikš <span>/ Ajťák</span></div>
+  <ul>
+    <li><a href="#o-mne">O mně</a></li>
+    <li><a href="#cenik">Ceník</a></li>
+    <li><a href="#doba">Kdy přijedu</a></li>
+    <li><a href="#proc-ja">Proč já</a></li>
+    <li class="nav-phone-li"><a href="tel:+420776138015" class="nav-phone">📞 Zavolat</a></li>
+  </ul>
+</nav>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">Počítačová pomoc v Brně a okolí</span>
+    <h1>Váš ajťák <span>v Brně</span> a okolí</h1>
+    <p>Pokazil se vám počítač, tiskárna nebo internet? Přijedu k vám domů, opravím to a vysvětlím srozumitelně. Bez složitých slov.</p>
+    <div class="hero-actions">
+      <a href="tel:+420776138015" class="btn-primary">📞 Zavolejte mi</a>
+      <a href="#cenik" class="btn-secondary">Podívat se na ceník</a>
+    </div>
+    <div class="trust-strip">
+      <div class="trust-item"><span class="ic">✓</span> Přijedu až k vám domů</div>
+      <div class="trust-item"><span class="ic">✓</span> Slevy pro seniory a studenty</div>
+      <div class="trust-item"><span class="ic">✓</span> Poradím i po telefonu zdarma</div>
+    </div>
+  </div>
+</header>
+
+<!-- O MNĚ -->
+<section class="section" id="o-mne">
+  <div class="section-label">O mně</div>
+  <h2>Pomáhám lidem s počítači od roku 2017</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>Jmenuji se <strong>Martin</strong> a počítačům se věnuji už přes osm let. Začínal jsem jako koníček, dnes je to moje práce na plný úvazek.</p>
+      <p>Pomáhám hlavně s tím, co lidi nejčastěji trápí — <strong>pomalý počítač, ztracené fotky, tiskárna co nechce tisknout, pomalý internet</strong> nebo nový Windows. Postarám se i o domácí síť, kamery a televizi.</p>
+      <p>Hlavně ale mluvím normálně, ne v počítačovém jazyku. Vždycky vám vysvětlím, co se pokazilo a co s tím — abyste věděli, za co platíte.</p>
+    </div>
+    <div class="photo-card">
+      <div class="photo-avatar">MM</div>
+      <h3>Martin Mikš</h3>
+      <div class="role">Váš ajťák v Brně</div>
+      <div class="photo-stats">
+        <div class="photo-stat"><div class="n">8+</div><div class="l">let zkušeností</div></div>
+        <div class="photo-stat"><div class="n">100+</div><div class="l">spokojených lidí</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CENÍK -->
+<section class="section" id="cenik">
+  <div class="section-label">Ceník</div>
+  <h2>Kolik to stojí</h2>
+  <p class="lead">Senioři a studenti mají výrazné slevy. Za výjezd mimo Brno připočítám 10 Kč za kilometr.</p>
+  <div class="price-wrap">
+    <div class="price-head-row"><span>Služba</span><span>Dospělí</span><span class="disc-col">Senioři a studenti</span></div>
+    <div class="price-row"><div class="price-name">Příjezd k vám – Brno</div><div class="price-val adult">799 Kč</div><div class="price-val disc">499 Kč</div></div>
+    <div class="price-row"><div class="price-name">Příjezd k vám – mimo Brno</div><div class="price-val adult">799 Kč <span class="unit">+ 10 Kč/km</span></div><div class="price-val disc">499 Kč <span class="unit">+ 10 Kč/km</span></div></div>
+    <div class="price-row"><div class="price-name">Zjištění závady na počítači</div><div class="price-val adult">499 Kč</div><div class="price-val disc">299 Kč</div></div>
+    <div class="price-row"><div class="price-name">Zapojení a nastavení tiskárny</div><div class="price-val adult">499 Kč</div><div class="price-val disc">299 Kč</div></div>
+    <div class="price-row"><div class="price-name">Vyčištění počítače</div><div class="price-val adult">499 Kč</div><div class="price-val disc">299 Kč</div></div>
+    <div class="price-row"><div class="price-name">Obnovení zapomenutého hesla</div><div class="price-val adult">999 Kč</div><div class="price-val disc">499 Kč</div></div>
+    <div class="price-row"><div class="price-name">Záchrana smazaných souborů <small>fotky, videa…</small></div><div class="price-val adult">2 999 Kč</div><div class="price-val disc">1 999 Kč</div></div>
+    <div class="price-row"><div class="price-name">Náročná záchrana dat <small>fotky, videa…</small></div><div class="price-val adult">4 999 Kč</div><div class="price-val disc">2 999 Kč</div></div>
+    <div class="price-row"><div class="price-name">Instalace Windows 11 a Office</div><div class="price-val adult">1 499 Kč</div><div class="price-val disc">999 Kč</div></div>
+    <div class="price-row"><div class="price-name">Úprava webových stránek</div><div class="price-val adult">od 5 000 Kč</div><div class="price-val disc">od 2 500 Kč</div></div>
+    <div class="price-row"><div class="price-name">Kontrola domácí sítě</div><div class="price-val adult">dle domluvy</div><div class="price-val disc">dle domluvy</div></div>
+    <div class="price-row"><div class="price-name">Kamerové systémy</div><div class="price-val adult">dle domluvy</div><div class="price-val disc">dle domluvy</div></div>
+    <div class="price-row"><div class="price-name">Nastavení televize a další</div><div class="price-val adult">dle domluvy</div><div class="price-val disc">dle domluvy</div></div>
+    <div class="price-row"><div class="price-name">Rada po telefonu nebo v chatu</div><div class="price-val adult"><span class="free-badge">zdarma</span></div><div class="price-val disc"><span class="free-badge">zdarma</span></div></div>
+  </div>
+  <p class="price-note">Ceny jsou orientační. U složitějších věcí se vždy předem domluvíme, ať víte, na čem jste.</p>
+</section>
+
+<!-- DOSTUPNOST -->
+<section class="section" id="doba">
+  <div class="section-label">Kdy přijedu</div>
+  <h2>Jsem tu pro vás každý den</h2>
+  <div class="hours-grid">
+    <div class="hours-card main">
+      <h3>Běžná doba</h3>
+      <div class="time">Po–Pá &nbsp;8:00–20:00</div>
+      <p>Ceny podle ceníku, žádný příplatek navíc.</p>
+    </div>
+    <div class="hours-card extra">
+      <h3>Večer a o víkendu</h3>
+      <div class="time">Klidně i v noci</div>
+      <p>Po 20:00, ráno před 8:00 a o víkendech. Když to hoří, ozvěte se.</p>
+      <span class="surcharge-badge">příplatek + 50 %</span>
+    </div>
+  </div>
+</section>
+
+<!-- PROČ JÁ -->
+<section class="section" id="proc-ja">
+  <div class="section-label">Proč zrovna já</div>
+  <h2>Na co se můžete spolehnout</h2>
+  <div class="why-grid">
+    <div class="why-card"><div class="why-icon">🚗</div><h3>Přijedu k vám</h3><p>Nemusíte nikam počítač vozit. Přijedu domů nebo do firmy.</p></div>
+    <div class="why-card"><div class="why-icon">💬</div><h3>Mluvím srozumitelně</h3><p>Žádná složitá slova. Vysvětlím všechno jednoduše.</p></div>
+    <div class="why-card"><div class="why-icon">⏱️</div><h3>Rychle</h3><p>Obvykle se ozvu do hodiny a přijedu nejčastěji ten samý den.</p></div>
+    <div class="why-card"><div class="why-icon">🎓</div><h3>Slevy pro seniory</h3><p>Senioři a studenti platí výrazně méně.</p></div>
+    <div class="why-card"><div class="why-icon">🛠️</div><h3>8 let zkušeností</h3><p>Od roku 2017 pomáhám lidem v Brně i okolí.</p></div>
+    <div class="why-card"><div class="why-icon">📞</div><h3>Rada zdarma</h3><p>Drobnou věc poradím po telefonu nebo v chatu bez placení.</p></div>
+  </div>
+</section>
+
+<!-- WEBY -->
+<section class="section" id="projekt">
+  <div class="section-label">Moje práce</div>
+  <h2>Weby, které jsem dělal</h2>
+  <div class="web-grid">
+
+    <div class="web-card">
+      <div class="web-preview">
+        <iframe src="https://avovi.github.io/agenda-pro/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <a class="web-preview-overlay" href="https://avovi.github.io/agenda-pro/" target="_blank" rel="noopener" aria-label="Otevřít AgendaPRO"></a>
+      </div>
+      <div class="web-body">
+        <div class="web-tag">Ve vývoji</div>
+        <h3>AgendaPRO</h3>
+        <p>„Veřejná správa bez papírového chaosu." Program pro úřady a městské firmy — evidence majetku, smluv a zakázek.</p>
+        <a href="https://avovi.github.io/agenda-pro/" target="_blank" rel="noopener" class="web-link">Otevřít web →</a>
+      </div>
+    </div>
+
+    <div class="web-card">
+      <div class="web-preview">
+        <iframe src="https://avovi.github.io/smajda-rekonstrukce/" loading="lazy" scrolling="no" tabindex="-1"></iframe>
+        <a class="web-preview-overlay" href="https://avovi.github.io/smajda-rekonstrukce/" target="_blank" rel="noopener" aria-label="Otevřít Smajda Rekonstrukce"></a>
+      </div>
+      <div class="web-body">
+        <div class="web-tag">Realizace</div>
+        <h3>Smajda Rekonstrukce</h3>
+        <p>Prezentační web pro řemeslníka — rekonstrukce a stavební práce v Brně a okolí.</p>
+        <a href="https://avovi.github.io/smajda-rekonstrukce/" target="_blank" rel="noopener" class="web-link">Otevřít web →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- KONTAKT -->
+<section class="contact-section" id="kontakt">
+  <div class="section-label">Kontakt</div>
+  <h2>Pojďme to vyřešit</h2>
+  <p>Zavolejte nebo napište. Jsem tu pro vás každý den a poradím rád.</p>
+  <div class="contact-links">
+    <a href="tel:+420776138015" class="btn-white">📞 +420 776 138 015</a>
+    <a href="mailto:ajtakbrno1@gmail.com" class="btn-outline-white">✉️ Napsat e-mail</a>
+  </div>
+</section>
+
+<footer>© 2026 Martin Mikš – IT služby Brno a okolí &nbsp;·&nbsp; <a href="mailto:ajtakbrno1@gmail.com">ajtakbrno1@gmail.com</a></footer>
+
+<!-- CHATBOT -->
+<button id="chat-btn" onclick="toggleChat()">💬 Potřebujete poradit?</button>
+
+<div id="chat-window">
+  <div id="chat-header">
+    <div>
+      <strong>🤖 Ajťák asistent</strong><br>
+      <span>Popište problém, poradím nebo vás nasměruji</span>
+    </div>
+    <button id="chat-close" onclick="toggleChat()">✕</button>
+  </div>
+  <div id="intake-form">
+    <label>Jaký máte počítač nebo telefon?</label>
+    <select id="os">
+      <option value="">-- vyberte --</option>
+      <option>Windows 11</option>
+      <option>Windows 10</option>
+      <option>Windows 7/8</option>
+      <option>Apple / macOS</option>
+      <option>Telefon Android</option>
+      <option>iPhone / iPad</option>
+      <option>Nevím</option>
+    </select>
+    <label>Jak dlouho problém máte?</label>
+    <select id="duration">
+      <option value="">-- vyberte --</option>
+      <option>Dnes poprvé</option>
+      <option>Pár dní</option>
+      <option>Týden a více</option>
+      <option>Měsíc a více</option>
+    </select>
+    <label>Co se děje?</label>
+    <textarea id="problem" placeholder="Např: Počítač je pomalý a nejde zapnout..."></textarea>
+    <button id="intake-submit" onclick="startChat()">Začít →</button>
+  </div>
+  <div id="chat-messages" style="display:none;"></div>
+  <div id="chat-form-wrap" style="display:none;">
+    <div id="chat-form">
+      <input id="chat-input" type="text" placeholder="Napište zprávu..." onkeydown="if(event.key==='Enter')sendMsg()">
+      <button id="chat-send" onclick="sendMsg()">→</button>
+    </div>
+    <div id="chat-footer">
+      <small>Poradce nenahrazuje odbornou pomoc</small>
+      <button id="download-btn" onclick="downloadReport()">⬇ Uložit přehled</button>
+    </div>
+  </div>
+</div>
+
+<script>
+let chatHistory = [];
+let intakeData = {};
+
+function toggleChat() {
+  document.getElementById('chat-window').classList.toggle('open');
+}
+
+function startChat() {
+  const os = document.getElementById('os').value;
+  const duration = document.getElementById('duration').value;
+  const problem = document.getElementById('problem').value.trim();
+  if (!problem) { alert('Prosím napište, co se děje.'); return; }
+  intakeData = { os, duration, problem, time: new Date().toLocaleString('cs-CZ') };
+  document.getElementById('intake-form').style.display = 'none';
+  document.getElementById('chat-messages').style.display = 'flex';
+  document.getElementById('chat-form-wrap').style.display = 'block';
+  const firstMsg = `OS: ${os || 'neznámý'}\nDoba trvání: ${duration || 'neuvedeno'}\nProblém: ${problem}`;
+  chatHistory.push({ role: 'user', parts: [{ text: firstMsg }] });
+  addMsg('user', problem);
+  sendToGemini();
+}
+
+function sendMsg() {
+  const input = document.getElementById('chat-input');
+  const text = input.value.trim();
+  if (!text) return;
+  input.value = '';
+  addMsg('user', text);
+  chatHistory.push({ role: 'user', parts: [{ text }] });
+  sendToGemini();
+}
+
+function addMsg(role, text) {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'msg ' + role;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping() {
+  const msgs = document.getElementById('chat-messages');
+  const div = document.createElement('div');
+  div.className = 'typing'; div.id = 'typing-indicator';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+async function sendToGemini() {
+  showTyping();
+  try {
+    const response = await fetch(
+      `https://gemini-proxy.avovi942.workers.dev/`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          contents: chatHistory
+        })
+      }
+    );
+    const data = await response.json();
+    removeTyping();
+    if (data.candidates && data.candidates[0]) {
+      const reply = data.candidates[0].content.parts[0].text;
+      chatHistory.push({ role: 'model', parts: [{ text: reply }] });
+      addMsg('bot', reply);
+    } else {
+      addMsg('system', 'Chyba připojení. Zavolejte přímo na +420 776 138 015.');
+    }
+  } catch(e) {
+    removeTyping();
+    addMsg('system', 'Nepodařilo se připojit. Zavolejte na +420 776 138 015.');
+  }
+}
+
+function downloadReport() {
+  const lines = [
+    '=== PŘEHLED PRO AJŤÁKA ===',
+    `Datum: ${intakeData.time || new Date().toLocaleString('cs-CZ')}`,
+    `Počítač/telefon: ${intakeData.os || 'neuvedeno'}`,
+    `Doba trvání problému: ${intakeData.duration || 'neuvedeno'}`,
+    `Popis problému: ${intakeData.problem || 'neuvedeno'}`,
+    '',
+    '=== PRŮBĚH KONVERZACE ===',
+    ...chatHistory.map(m => `[${m.role === 'user' ? 'ZÁKAZNÍK' : 'ASISTENT'}]: ${m.parts[0].text}`),
+    '',
+    '========================',
+    'Kontakt: Martin Mikš | +420 776 138 015 | ajtakbrno1@gmail.com'
+  ];
+  const blob = new Blob([lines.join('\n')], { type: 'text/plain;charset=utf-8' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'prehled-ajtak.txt';
+  a.click();
+}
+</script>
+</body>
+</html>
