@@ -84,6 +84,24 @@ body {
 @keyframes float3 { 0%,100%{transform:translate(0,0)} 40%{transform:translate(6vw,-4vh)} 70%{transform:translate(-5vw,3vh)} }
 
 /* NAV */
+.promo-bar {
+  position: relative; z-index: 101;
+  display: block; text-align: center;
+  padding: 8px 1rem;
+  font-size: 0.85rem;
+  color: var(--ink-2);
+  background: var(--accent-soft);
+  border-bottom: 1px solid var(--border);
+  text-decoration: none;
+  transition: background .3s var(--ease);
+}
+.promo-bar strong { color: var(--accent); font-weight: 600; white-space: nowrap; }
+.promo-bar:hover strong { text-decoration: underline; }
+@media (max-width: 640px) {
+  .promo-bar { font-size: 0.8rem; }
+  .promo-bar .promo-long { display: none; }
+}
+
 nav {
   display: flex; justify-content: space-between; align-items: center;
   padding: 0 1.5rem; height: 52px;
@@ -504,6 +522,10 @@ footer a { color: var(--ink-2); text-decoration: none; }
   <div class="blob blob-3"></div>
 </div>
 
+<a href="https://www.agendapro.cz" target="_blank" rel="noopener" class="promo-bar">
+  <span class="promo-long">Hledáte pro svoji firmu aplikaci na úkoly? </span>Digitalizujete? <strong>Vyzkoušejte AgendaPRO →</strong>
+</a>
+
 <nav>
   <div class="nav-logo">
     <div class="logo-glyph">◆</div>
@@ -591,7 +613,7 @@ const track = document.getElementById('reviews-track');
   <h2>Pomáhám lidem s počítači od roku 2017</h2>
   <div class="about-grid">
     <div class="about-text">
-      <p>Jmenuji se <strong>Martin</strong> a počítačům se věnuji už přes osm let. Začínalo to jako koníček, dnes je to moje práce na plný úvazek.</p>
+      <p>Jmenuji se <strong>Martin</strong> a počítačům se věnuji už přes osm let. Začínal jsem jako koníček, dnes je to moje práce na plný úvazek.</p>
       <p>Pomáhám hlavně s tím, co lidi nejčastěji trápí — <strong>pomalý počítač, ztracené fotky, tiskárna co nechce tisknout, pomalý internet</strong> nebo nový Windows. Postarám se i o domácí síť, kamery a televizi.</p>
       <p>Hlavně ale mluvím normálně, ne v počítačovém jazyku. Vždycky vám vysvětlím, co se pokazilo a co s tím — abyste věděli, za co platíte.</p>
     </div>
@@ -611,14 +633,12 @@ const track = document.getElementById('reviews-track');
 <section class="section" id="cenik">
   <div class="section-label">Ceník</div>
   <h2>Kolik to stojí</h2>
-  <p class="lead">V ceně příjezdu už závadu zdiagnostikuji a řeknu vám cenu opravy předem — víte, do čeho jdete, ještě než začnu. Senioři a studenti mají výrazné slevy. Za výjezd mimo Brno připočítám 10 Kč za kilometr.</p>
+  <p class="lead">Senioři a studenti mají výrazné slevy. Za výjezd mimo Brno připočítám 10 Kč za kilometr.</p>
   <div class="price-wrap glass">
     <div class="price-head-row"><span>Služba</span><span>Dospělí</span><span class="disc-col">Senioři a studenti</span></div>
-    <div class="price-row"><div class="price-name">Příjezd k vám – Brno <small>součástí je diagnostika závady a cena opravy předem</small></div><div class="price-val adult">799 Kč</div><div class="price-val disc">499 Kč</div></div>
-    <div class="price-row"><div class="price-name">Příjezd k vám – mimo Brno <small>součástí je diagnostika závady a cena opravy předem</small></div><div class="price-val adult">799 Kč <span class="unit">+ 10 Kč/km</span></div><div class="price-val disc">499 Kč <span class="unit">+ 10 Kč/km</span></div></div>
-    <div class="price-row"><div class="price-name">Zapojení a nastavení tiskárny</div><div class="price-val adult">499 Kč</div><div class="price-val disc">299 Kč</div></div>
-    <div class="price-row"><div class="price-name">Vyčištění počítače</div><div class="price-val adult">499 Kč</div><div class="price-val disc">299 Kč</div></div>
-    <div class="price-row"><div class="price-name">Obnovení zapomenutého hesla</div><div class="price-val adult">999 Kč</div><div class="price-val disc">499 Kč</div></div>
+    <div class="price-row"><div class="price-name">Příjezd k vám – Brno</div><div class="price-val adult">500 Kč</div><div class="price-val disc">500 Kč</div></div>
+    <div class="price-row"><div class="price-name">Příjezd k vám – mimo Brno</div><div class="price-val adult">500 Kč <span class="unit">+ 10 Kč/km</span></div><div class="price-val disc">500 Kč <span class="unit">+ 10 Kč/km</span></div></div>
+    <div class="price-row"><div class="price-name">Práce technika <small>tiskárna, vyčištění počítače, zapomenuté heslo (Windows) a jiné závady či požadavky</small></div><div class="price-val adult">800 Kč <span class="unit">/ hod</span></div><div class="price-val disc">400 Kč <span class="unit">/ hod</span></div></div>
     <div class="price-row"><div class="price-name">Záchrana smazaných souborů <small>fotky, videa…</small></div><div class="price-val adult">2 999 Kč</div><div class="price-val disc">1 999 Kč</div></div>
     <div class="price-row"><div class="price-name">Náročná záchrana dat <small>fotky, videa…</small></div><div class="price-val adult">4 999 Kč</div><div class="price-val disc">2 999 Kč</div></div>
     <div class="price-row"><div class="price-name">Instalace Windows 11 a Office</div><div class="price-val adult">1 499 Kč</div><div class="price-val disc">999 Kč</div></div>
@@ -675,9 +695,9 @@ const track = document.getElementById('reviews-track');
         <a class="web-preview-overlay" href="https://www.agendapro.cz" target="_blank" rel="noopener" aria-label="Otevřít AgendaPRO"></a>
       </div>
       <div class="web-body">
-        <div class="web-tag">Ve vývoji</div>
+        <div class="web-tag">Pilotní provoz</div>
         <h3>AgendaPRO</h3>
-        <p>„Veřejná správa bez papírového chaosu." Program pro úřady a městské firmy — evidence majetku, smluv a zakázek.</p>
+        <p>„Digitalizace levně a efektivně." Aplikace pro firmy i veřejnou správu — objednávky, evidence majetku, úkoly a zakázky VZMR.</p>
         <a href="https://www.agendapro.cz" target="_blank" rel="noopener" class="web-link">Otevřít web →</a>
       </div>
     </div>
